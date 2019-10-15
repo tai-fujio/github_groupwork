@@ -1,0 +1,37 @@
+<h1>一覽</h1>
+<hr/>
+<br>
+
+<h1>物件一覽</h1>
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th>物件名</th>
+      <th>賃料</th>
+      <th>住所</th>
+      <th>築年数</th>
+      <th>備考</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rental_properties.each do |rental_property| %>
+      <tr>
+        <td><%= rental_property.property_name %></td>
+        <td><%= rental_property.rent %>円</td>
+        <td><%= rental_property.street_address %></td>
+        <td><%= rental_property.house_age %>年</td>
+        <td><%= rental_property.remarks %></td>
+        <td><%= link_to '詳細', rental_property %></td>
+        <td><%= link_to '編集', edit_rental_property_path(rental_property) %></td>
+        <td><%= link_to '削除', rental_property_path(rental_property), method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '物件を登録する', new_rental_property_path %>
