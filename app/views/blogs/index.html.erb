@@ -1,2 +1,19 @@
-<h1>Blogs#index</h1>
-<p>Find me in app/views/blogs/index.html.erb</p>
+<h3>全ユーザーの投稿一覧</h3>
+
+<p><%= notice %></p>
+
+<% @blogs.each do |blog| %>
+
+  <div class="one_blog">
+    <p class="blog_user"><%= image_tag "man.png", size: '23x23' %><%= blog.user.name %></p>
+    <p class="blog_content"><%= blog.content %></p>
+    <p><%= image_tag blog.image.to_s %></p>
+    <div class="blog_option">
+      <p><%= link_to '詳細を見る', blog_path(blog.id) %></p>
+      <p><%= link_to "編集する", edit_blog_path(blog.id) %></p>
+      <p><%= link_to "削除する", blog_path(blog.id), method: :delete, data: { confirm: '本当に削除しますか？' }  %></p>
+    </div>
+  </div>
+<% end %>
+
+<p class="to_other_page"><%= link_to '新しく投稿する', new_blog_path %></p>
